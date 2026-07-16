@@ -1,0 +1,179 @@
+#unlocked_container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Escena que aloja la carta y las capas de pájaros */
+.escena-carta {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Distribución de Capas con Z-Index */
+.capa-pajaros-detras {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* Por detrás */
+    pointer-events: none;
+}
+
+.carta-recipiente {
+    position: relative;
+    z-index: 2; /* En medio */
+    width: 460px; /* Un poco más grande que el puzzle */
+    height: 460px;
+}
+
+.capa-pajaros-delante {
+    position: absolute;
+    inset: 0;
+    z-index: 3; /* Por delante de todo */
+    pointer-events: none;
+}
+
+/* La Carta física */
+.carta {
+    width: 100%;
+    height: 100%;
+    background-color: #fffbf4; /* Tono papel/pergamino suave */
+    border: 3px solid #F5A0A1;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.carta h2 {
+    color: #eb8fb5;
+    margin-bottom: 15px;
+}
+
+/* Silueta SVG del pájaro */
+.pajaro-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* PÁJAROS POSADOS (Iniciales) */
+.pajaro-posado {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    transform-origin: bottom center;
+}
+
+/* Pájaro 1 (Izquierda, mirando a la derecha) */
+#pajaro1 {
+    top: -35px;
+    left: 45px;
+    transform: rotate(-10deg);
+    animation: asustarPajaro1 1.2s forwards;
+    animation-delay: 3.5s; /* Se asusta a los 5 segundos */
+}
+
+/* Pájaro 2 (Derecha, rotado horizontalmente para que mire al otro) */
+#pajaro2 {
+    top: -30px;
+    right: 55px;
+    transform: scaleX(-1) rotate(-8deg); 
+    animation: asustarPajaro2 1.2s forwards;
+    animation-delay: 3.45s; /* Se asusta una décima después (efecto orgánico) */
+}
+
+/* --- ANIMACIONES DE DESPEGUE (Se asustan) --- */
+@keyframes asustarPajaro1 {
+    0% { transform: rotate(-10deg) scale(1); }
+    15% { transform: translateY(6px) scaleY(0.7) rotate(-10deg); } /* Se agacha por el susto */
+    100% { transform: translate(-400px, -450px) scale(0.3) rotate(-35deg); opacity: 0; } /* Vuela y desaparece */
+}
+
+@keyframes asustarPajaro2 {
+    0% { transform: scaleX(-1) rotate(-8deg) scale(1); }
+    15% { transform: scaleX(-1) translateY(6px) scaleY(0.7) rotate(-8deg); } 
+    100% { transform: scaleX(-1) translate(-450px, -400px) scale(0.3) rotate(-30deg); opacity: 0; }
+}
+
+/* --- PÁJAROS EN VUELO (Cruzan la pantalla) --- */
+.pajaro-volando {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    pointer-events: none;
+    left: -100px; 
+    top: 0;
+    opacity: 0;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    animation: cruzarVolando linear forwards;
+}
+
+@keyframes cruzarVolando {
+    0% {
+        /* Mantenemos la posición inicial controlada */
+        transform: translate(0, var(--y-inicio)) scale(0.4) rotate(15deg);
+        opacity: 0;
+    }
+    5% {
+        /* Se vuelve visible rápidamente una vez que ya ha comenzado a moverse */
+        opacity: 1;
+    }
+    50% {
+        /* Vuelo ondulante (revoloteo) a mitad de pantalla */
+        transform: translate(55vw, calc(var(--y-fin) - 80px)) scale(0.5) rotate(-10deg);
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        /* Sale por el extremo derecho de la pantalla */
+        transform: translate(calc(100vw + 150px), var(--y-fin)) scale(0.4) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+.next_btn2{
+    position: absolute;
+    left: 50%;
+    bottom: -45px;
+    transform: translateX(-50%);
+    margin: 0;
+    width: 45px;
+    height: 45px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    background-color: #F5A0A1;
+    visibility: hidden;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flecha2{
+    width: 28px;
+    height: auto;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.flecha2:hover{
+    transform: scale(1.10);
+}
+
+.next_btn2:hover{
+    transform: translateX(-50%) scale(1.10);
+}

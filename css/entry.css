@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+html, body {
+    margin: 0;
+    overflow: hidden;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('../sources/flowersback.png');
+    background-size: cover;  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Fredoka', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    width: 100%;
+    padding: 0;
+}
+
+.code_box{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 8px;
+}
+
+.fila{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.casilla{
+    background-color: white;
+    cursor: pointer;
+    border-radius: 500px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin-left: 9px;
+    margin-right: 9px;
+    font-size: 22px;
+    font-weight: 400;
+    box-shadow: 3px 4px 4px rgb(188, 188, 188);
+}
+
+.casilla:active{
+    transform: scale(0.95) !important;
+}
+
+.casilla:hover{
+    transform: scale(1.05);
+}
+
+.delete, .pista{
+    width: 25px;
+    height: auto;
+}
+
+#nPista{
+    visibility: hidden;
+    cursor: auto;
+}
+
+.deco{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.dot_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.heart{
+    width: 95px;
+    height: auto;
+    margin: 0;
+}
+
+.dot{
+    background-color: grey;
+    width: 9.5px;
+    height: 9.5px;
+    margin-left: 4.5px;
+    margin-right: 4.5px;
+    margin-bottom: 14px;
+    margin-top: 22px;
+    border-radius: 500px;
+}
+
+.pista_box{
+    position: absolute;
+    margin-top: 15px;
+    color: rgb(88, 88, 88);
+    font-style: italic;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+#container{
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#capa_transicion{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.flor {
+  position: absolute;
+}
+ 
+.flor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
